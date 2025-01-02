@@ -5,9 +5,9 @@ use std::cmp::Ordering;
 fn main() {
     // Generate a random number between 1 and 100
     let secret_number = rand::thread_rng().gen_range(1..=100);
+    let mut count = 1;
 
     println!("Guess a number!");
-
     loop {
         println!("Please input your guess.");
 
@@ -28,9 +28,15 @@ fn main() {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
-                println!("You win!");
+                if count == 1 {
+                    println!("You win in 1 try!");
+                } else {
+                    println!("You win in {count} tries!");
+                }
                 break;
             },
         }
+
+        count += 1;
     }
 }
